@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Puzzle</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff0f0;
+      color: #800000;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .puzzle {
+      border: 2px solid #ff4d4d;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #ffe5e5;
+    }
+    .message {
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      text-align: center;
+      font-size: 18px;
+      background-color: #ffe5e5;
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px dashed #ff4d4d;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Solve the Mystery Puzzles</h1>
+
+  <div class="message">
+    <!-- Write your personal message to her here -->
+    <p>Zoha Zoha Zoha. By now, you should know that I don't miss hints from you, and I was going to do something in person,
+    but why wait until then, and not now? I know what I want, and I know what you want, so let's not dance around it. But, like
+    always have to work for your reward. Let's see how good your puzzle-solving skills are. </p>
+  </div>
+
+  <div class="puzzle">
+    <h2>Puzzle 1: Unscramble</h2>
+    <p>Unscramble the letters to find a word: <strong>YM</strong></p>
+    <input type="text" id="input1" placeholder="Your answer here">
+    <button onclick="checkAnswer(1, 'my')">Check</button>
+    <button onclick="document.getElementById('hint1').style.display='block'">Need a hint?</button>
+    <p id="hint1" style="display:none; color: #b30000; font-style: italic;">Seriously?</p>
+    <div class="result" id="result1"></div>
+  </div>
+
+  <div class="puzzle">
+    <h2>Puzzle 2: Riddle</h2>
+    <p>I exist to be. What am I?</p>
+    <input type="text" id="input2" placeholder="Your answer here">
+    <button onclick="checkAnswer(2, 'be')">Check</button>
+    <button onclick="document.getElementById('hint2').style.display='block'">Need a hint?</button>
+    <p id="hint2" style="display:none; color: #b30000; font-style: italic;">The answer is within the puzzle.</p>
+    <div class="result" id="result2"></div>
+  </div>
+
+  <div class="puzzle">
+    <h2>Puzzle 3: Hidden Word</h2>
+    <p>Find the hidden word in this sentence: <em>You only understand yourself.</em></p>
+    <input type="text" id="input3" placeholder="Your answer here">
+    <button onclick="checkAnswer(3, 'you')">Check</button>
+    <button onclick="document.getElementById('hint3').style.display='block'">Need a hint?</button>
+    <p id="hint3" style="display:none; color: #b30000; font-style: italic;">Should I give you a hint for this?</p>
+    <div class="result" id="result3"></div>
+  </div>
+
+  <div class="puzzle">
+    <h2>Puzzle 4: Reverse Cipher</h2>
+    <p>Decrypt this reversed word: <strong>lliW</strong></p>
+    <input type="text" id="input4" placeholder="Your answer here">
+    <button onclick="checkAnswer(4, 'will')">Check</button>
+    <button onclick="document.getElementById('hint4').style.display='block'">Need a hint?</button>
+    <p id="hint4" style="display:none; color: #b30000; font-style: italic;">Okay, I'm concerned. Why did you press hint for this one.</p>
+    <div class="result" id="result4"></div>
+  </div>
+
+  <div class="puzzle">
+    <h2>Puzzle 5: Word Jumble</h2>
+    <p>Find the word hidden in this jumble: <strong>glreifdnir</strong></p>
+    <input type="text" id="input5" placeholder="Your answer here">
+    <button onclick="checkAnswer(5, 'girlfriend')">Check</button>
+    <button onclick="document.getElementById('hint5').style.display='block'">Need a hint?</button>
+    <p id="hint5" style="display:none; color: #b30000; font-style: italic;">Think of what you want to be considered to me</p>
+    <div class="result" id="result5"></div>
+  </div>
+
+  <div class="puzzle">
+    <h2>Final Message</h2>
+    <p>Put together all the answers to form the final question</p>
+    <input type="text" id="finalInput" placeholder="Type the full message">
+    <button onclick="checkFinal()">Reveal</button>
+    <button onclick="document.getElementById('hint6').style.display='block'">Need a hint?</button>
+    <p id="hint6" style="display:none; color: #b30000; font-style: italic;">You don't need a hint</p>
+    <div class="result" id="finalResult"></div>
+  </div>
+
+  <script>
+    function checkAnswer(puzzleNum, correctAnswer) {
+      const input = document.getElementById(`input${puzzleNum}`).value.trim().toLowerCase();
+      const result = document.getElementById(`result${puzzleNum}`);
+      if (input === correctAnswer) {
+        result.textContent = "✅ Correct! I knew you are really smart";
+        result.style.color = "green";
+      } else {
+        result.textContent = "❌ Try again! Man, you need to lock in pagal.";
+        result.style.color = "red";
+      }
+    }
+
+    function checkFinal() {
+      const input = document.getElementById("finalInput").value.trim().toLowerCase();
+      const result = document.getElementById("finalResult");
+      if (input === "will you be my girlfriend") {
+        result.innerHTML = "<h3 style='color: green;'>💖 YES?????!!!! (p.s. you can get unlimited cuddles, hugs, kisses, and coco mangos if you say yes)💖</h3>";
+      } else {
+        result.textContent = "That’s not quite right. Try again!";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
